@@ -34,7 +34,7 @@ $(function() {
 				if(self.settingsViewModel.settings.plugins.BLTouch.cmdRepeatability() !== ""){
 				    buttons[0].children.push({type: "javascript", javascript: "OctoPrint.control.sendGcode(self.settings.settings.plugins.BLTouch.cmdRepeatability());", name: "Repeat Test", confirm: "You are about to run a repeatability test.", enabled: "!self.isPrinting() && self.loginState.hasPermission(self.access.permissions.CONTROL) && self.isOperational()"});
                 }
-				buttons[0].children.push({type: "javascript", javascript: "OctoPrint.control.sendGcode(self.settings.settings.plugins.BLTouch.cmdSaveSettings());", name: "Save", enabled: "!self.isPrinting() && self.loginState.hasPermission(self.access.permissions.CONTROL) && self.isOperational()"});
+				buttons[0].children.push({type: "javascript", javascript: "OctoPrint.control.sendGcode([self.settings.settings.plugins.BLTouch.cmdSaveSettings(), \"M300 P105 S1108\", \"M300 P210 S1661\"]);", name: "Save", enabled: "!self.isPrinting() && self.loginState.hasPermission(self.access.permissions.CONTROL) && self.isOperational()"});
 			} else {
 				var buttons =[
 					{ name: "BLTouch", type: "section", layout: "horizontal", children: [
